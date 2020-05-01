@@ -1,23 +1,29 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 #include <boost/spirit/include/qi.hpp>
 
-namespace qi = boost::spirit::qi;
 
-int main()
+int main(int argc, char *argv[])
 {
-    std::string s("123 456");
-    std::string::iterator first = s.begin(), last = s.end();
-    int n1, n2;
-    bool success = qi::phrase_parse(
-        first,
-        last,
-        qi::int_ >> qi::int_,
-        qi::space,
-        n1, n2
-    );
-    if(success){
-        std::cout << "OK " << n1 << ", " << n2 << std::endl;
+    std::string line;
+    if(argc < 2){
+        std::cout << "Insufficient arguments" << std::endl;
+        return 1;
     }
+    
+    std::string filename = argv[1];
+
+    std::ifstream readfile(filename);
+
+    if(readfile.is_open()){
+        while(getline(readfile, line)){
+            std::cout << line << std::endl;
+        }
+        readfile.close();
+    }
+    else std::cout << "Error Can not read file : " << filename << std::endl;
     return 0;
+    
+
 }
