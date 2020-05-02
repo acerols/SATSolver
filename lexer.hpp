@@ -23,7 +23,7 @@ public:
 
     void parse_line(std::string line)
     {
-        std::cout << line << endl;
+        std::cout << line << std::endl;
     }
 
 };

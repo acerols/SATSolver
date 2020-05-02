@@ -3,6 +3,7 @@
 #include <fstream>
 #include <boost/spirit/include/qi.hpp>
 
+#include "lexer.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -12,18 +13,8 @@ int main(int argc, char *argv[])
         return 1;
     }
     
-    std::string filename = argv[1];
-
-    std::ifstream readfile(filename);
-
-    if(readfile.is_open()){
-        while(getline(readfile, line)){
-            std::cout << line << std::endl;
-        }
-        readfile.close();
-    }
-    else std::cout << "Error Can not read file : " << filename << std::endl;
-    return 0;
+    lexer lex(argv[1]);
     
+    return 0;
 
 }
