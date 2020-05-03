@@ -1,10 +1,19 @@
-cmake_minimum_required(VERSION 3.1)
-project(SATSolver
-        VERSION 0.0.0
-        LANGUAGES CXX)
+# CMake Version
+cmake_minimum_required(VERSION 3.0)
+# Project name, Use Language
+project(SATSolver CXX)
+#find Boost library
 find_package(Boost REQUIRED)
-set(CMAKE_CXX_STANDARD 14)
+#add include dir
 include_directories(SATSolver ./include)
-add_executable(SATSolver main.cpp)
-target_compile_features(SATSolver PRIVATE cxx_std_14)
-
+#set source files
+set(SOURCE
+    main.cpp
+    lexer.cpp
+)
+#make executable file
+add_executable(SATSolver ${SOURCE})
+#link target
+target_link_libraries(SATSolver ${Boost_LIBRARIES})
+#Use compiler for CXX
+target_compile_features(SATSolver PRIVATE cxx_std_11)
