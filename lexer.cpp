@@ -24,6 +24,7 @@ void lexer::parse_line(std::string line)
 {  
     std::vector<std::string> resultStr;
     std::string::iterator iter = line.begin(), end = line.end();
+    std::vector<int> lineCNF;
     //qi::rule<std::string::iterator, *qi::char_type, qi::space_type> rule = *qi::char_;
 //    bool success = qi::phrase_parse(
 //        iter,
@@ -32,6 +33,25 @@ void lexer::parse_line(std::string line)
 //        qi::space,
 //        resultStr
 //    );
+    bool success_num = qi::phrase_parse(
+        iter,
+        end,
+        *qi::int_,
+        qi::space,
+        lineCNF
+    );
+
+    if(lineCNF.size()){
+        std::cout << "NUM OK" << std::endl;
+        for(auto i = 0; i < lineCNF.size(); i++){
+            std::cout << lineCNF.at(i) << " ";
+        }
+        std::cout << std::endl;
+    }
+    else{
+        std::cout << "NUM NO" << std::endl;
+    }
+
     bool success = qi::parse(
         iter,
         end,
@@ -40,7 +60,13 @@ void lexer::parse_line(std::string line)
     );
 
     if(success){
-        std::cout << resultStr.size() << std::endl;;
+        if(resultStr.at(0) == "c"){
+            std::cout << "comment line" << std::endl;
+        } 
+        else if(resultStr.at(0) == "p"){
+            std::cout << "definition" << std::endl;
+        }
+        else if(lineCNF.size());
         for(auto i = 0; i < resultStr.size(); i++){
             std::cout << resultStr.at(i) << " ";
         }
