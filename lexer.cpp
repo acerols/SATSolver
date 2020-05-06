@@ -21,21 +21,30 @@ lexer::lexer(std::string filename){
 }
 
 void lexer::parse_line(std::string line)
-{
-    int n1, n2;
+{  
     std::vector<std::string> resultStr;
     std::string::iterator iter = line.begin(), end = line.end();
-    bool success = qi::phrase_parse(
+    //qi::rule<std::string::iterator, *qi::char_type, qi::space_type> rule = *qi::char_;
+//    bool success = qi::phrase_parse(
+//        iter,
+//        end,
+//        *qi::char_,
+//        qi::space,
+//        resultStr
+//    );
+    bool success = qi::parse(
         iter,
         end,
-        *(qi::char_ - ' ') % ',',
-        qi::space,
+        *(*(qi::char_ - qi::lit(" ")) >> qi::lit(" ")) >> (*qi::char_ | qi::space),
         resultStr
     );
+
     if(success){
+        std::cout << resultStr.size() << std::endl;;
         for(auto i = 0; i < resultStr.size(); i++){
-            //std::cout << resultStr.at(i) << std::endl;
+            std::cout << resultStr.at(i) << " ";
         }
+        std::cout << std::endl;
     }
 
 }
