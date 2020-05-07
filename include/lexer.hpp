@@ -18,10 +18,8 @@ private:
     
 public:    
     lexer(std::string filename);
-    void parse_line(std::string line);
-
+    void parse_line(std::string line);    
     
-
 };
 
 #endif
