@@ -41,17 +41,6 @@ void lexer::parse_line(std::string line)
         lineCNF
     );
 
-    if(lineCNF.size()){
-        std::cout << "NUM OK" << std::endl;
-        for(auto i = 0; i < lineCNF.size(); i++){
-            std::cout << lineCNF.at(i) << " ";
-        }
-        std::cout << std::endl;
-    }
-    else{
-        std::cout << "NUM NO" << std::endl;
-    }
-
     bool success = qi::parse(
         iter,
         end,
@@ -60,15 +49,27 @@ void lexer::parse_line(std::string line)
     );
 
     if(success){
+        //Parse Comment line
         if(resultStr.at(0) == "c"){
             std::cout << "comment line" << std::endl;
         } 
+        // Parse Definition line
         else if(resultStr.at(0) == "p"){
             std::cout << "definition" << std::endl;
+            bool definitions = qi::phrase_parse(
+                line.begin(),
+                end,
+                qi::lit("p") >> qi::lit("cnf") >> ((qi::int_ >> qi::int_) | (*qi::lit::ns::ch >> *ns::ch)),
+                var,
+                formula
+            );
         }
-        else if(lineCNF.size());
-        for(auto i = 0; i < resultStr.size(); i++){
-            std::cout << resultStr.at(i) << " ";
+        //Parse Bool form Line
+        else if(lineCNF.size()){
+            for(auto i = 0; i < lineCNF.size(); i++){
+                std::cout << lineCNF.at(i) << " ";
+            }
+            std::cout << std::endl;
         }
         std::cout << std::endl;
     }
