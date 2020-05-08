@@ -12,9 +12,9 @@
 class lexer{
 private:
     std::ifstream readfile;
-    std::vector<std::vector<int>> cnf;
-    int var;
-    int formula;
+    std::vector<std::vector<int>> CNF;
+    int numVar;
+    int numLiteral;
     
 public:    
     lexer(std::string filename);

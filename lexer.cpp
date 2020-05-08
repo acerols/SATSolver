@@ -18,6 +18,14 @@ lexer::lexer(std::string filename){
     while(getline(readfile, line)){
         parse_line(line);
     }
+
+    for(auto i = 0; i < CNF.size(); i++){
+        for(auto j = 0; j < CNF.at(i).size(); j++){
+            std::cout << CNF.at(i).at(j) << " ";
+        }
+        std::cout << std::endl;
+    }
+
 }
 
 void lexer::parse_line(std::string line)
@@ -49,29 +57,27 @@ void lexer::parse_line(std::string line)
     );
 
     if(success){
-        //Parse Comment line
+        //Parse Comments line
         if(resultStr.at(0) == "c"){
             std::cout << "comment line" << std::endl;
         } 
-        // Parse Definition line
+        // Parse Problem line
         else if(resultStr.at(0) == "p"){
             std::cout << "definition" << std::endl;
             bool definitions = qi::phrase_parse(
                 line.begin(),
                 end,
-                qi::lit("p") >> qi::lit("cnf") >> ((qi::int_ >> qi::int_) | (*qi::lit::ns::ch >> *ns::ch)),
-                var,
-                formula
+                qi::lit("p") >> qi::lit("cnf") >> ((qi::int_ >> qi::int_)),
+                qi::space,
+                numVar,
+                numLiteral
             );
+            std::cout << "Number of Variable " << numVar << " : Number of Literal " << numLiteral << std::endl;
         }
-        //Parse Bool form Line
+        //Parse Clauses Line
         else if(lineCNF.size()){
-            for(auto i = 0; i < lineCNF.size(); i++){
-                std::cout << lineCNF.at(i) << " ";
-            }
-            std::cout << std::endl;
+            CNF.push_back(lineCNF);
         }
-        std::cout << std::endl;
     }
 
 }
