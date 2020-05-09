@@ -33,4 +33,4 @@
 
 /build/
 /.vscode/
-/test/*.txt/
+test/*.txt
