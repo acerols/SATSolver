@@ -1,12 +1,13 @@
 # CMake Version
 cmake_minimum_required(VERSION 3.0)
 
+#use compiler
+#set(CMAKE_C_COMPILER "/usr/bin/clang-10")
+#set(CMAKE_CXX_COMPILER "/usr/bin/clang++-10")
+
+
 # Project name, Use Language
 project(SATSolver CXX)
-
-#use compiler
-set(CMAKE_C_COMPILER "~/mybuilddir/llvm-project/build/bin/clang")
-set(CMake_CXX_COMPILER "~/mybuilddir/llvm-project/build/bin/clang++")
 
 #find Boost library
 find_package(Boost REQUIRED)

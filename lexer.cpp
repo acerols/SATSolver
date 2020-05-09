@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <cmath>
 #include <boost/spirit/include/qi.hpp>
 #include <boost/spirit/include/phoenix.hpp>
 #include "lexer.hpp"
@@ -19,9 +20,11 @@ lexer::lexer(std::string filename){
         parse_line(line);
     }
 
+    //debug console
     for(auto i = 0; i < CNF.size(); i++){
+        std::cout << "Litearl=" << i << " : ";
         for(auto j = 0; j < CNF.at(i).size(); j++){
-            std::cout << CNF.at(i).at(j) << " ";
+            std::cout << j << "=" << CNF.at(i).at(j) << ", ";
         }
         std::cout << std::endl;
     }
@@ -76,7 +79,16 @@ void lexer::parse_line(std::string line)
         }
         //Parse Clauses Line
         else if(lineCNF.size()){
-            CNF.push_back(lineCNF);
+            std::vector<int> lineLit(numVar+1, 0);
+            for(int i = 0; i < lineCNF.size() && lineCNF.at(i) != 0; i++){
+                if(lineCNF.at(i) > 0){
+                    lineLit.at(lineCNF.at(i)) = 1;
+                }
+                else{
+                    lineLit.at(std::abs(lineCNF.at(i))) = -1;
+                }
+            }
+            CNF.push_back(lineLit);
         }
     }
 

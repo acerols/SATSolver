@@ -1,0 +1,18 @@
+comment line
+definition
+Number of Variable 2 : Number of Literal 4
+0 1 1 
+0 1 -1 
+0 -1 1 
+0 -1 -1 
+Litearl=0 : 0=0, 1=1, 2=1, 
+Litearl=1 : 0=0, 1=1, 2=-1, 
+Litearl=2 : 0=0, 1=-1, 2=1, 
+Litearl=3 : 0=0, 1=-1, 2=-1, 
+comment line
+definition
+Number of Variable 2 : Number of Literal 4
+Litearl=0 : 0=0, 1=1, 2=1, 
+Litearl=1 : 0=0, 1=1, 2=-1, 
+Litearl=2 : 0=0, 1=-1, 2=1, 
+Litearl=3 : 0=0, 1=-1, 2=-1, 
