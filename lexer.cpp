@@ -21,10 +21,10 @@ lexer::lexer(std::string filename){
     }
 
     //debug console
-    for(auto i = 0; i < CNF.size(); i++){
+    for(auto i = 0; i < cnf.CNF.size(); i++){
         std::cout << "Litearl=" << i << " : ";
-        for(auto j = 0; j < CNF.at(i).size(); j++){
-            std::cout << j << "=" << CNF.at(i).at(j) << ", ";
+        for(auto j = 1; j < cnf.CNF.at(i).size(); j++){
+            std::cout << j << "=" << cnf.CNF.at(i).at(j) << ", ";
         }
         std::cout << std::endl;
     }
@@ -72,14 +72,14 @@ void lexer::parse_line(std::string line)
                 end,
                 qi::lit("p") >> qi::lit("cnf") >> ((qi::int_ >> qi::int_)),
                 qi::space,
-                numVar,
-                numLiteral
+                cnf.numVar,
+                cnf.numLiteral
             );
-            std::cout << "Number of Variable " << numVar << " : Number of Literal " << numLiteral << std::endl;
+            std::cout << "Number of Variable " << cnf.numVar << " : Number of Literal " << cnf.numLiteral << std::endl;
         }
         //Parse Clauses Line
         else if(lineCNF.size()){
-            std::vector<int> lineLit(numVar+1, 0);
+            std::vector<int> lineLit(cnf.numVar+1, 0);
             for(int i = 0; i < lineCNF.size() && lineCNF.at(i) != 0; i++){
                 if(lineCNF.at(i) > 0){
                     lineLit.at(lineCNF.at(i)) = 1;
@@ -88,7 +88,7 @@ void lexer::parse_line(std::string line)
                     lineLit.at(std::abs(lineCNF.at(i))) = -1;
                 }
             }
-            CNF.push_back(lineLit);
+            cnf.CNF.push_back(lineLit);
         }
     }
 

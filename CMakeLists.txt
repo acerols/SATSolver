@@ -19,6 +19,7 @@ include_directories(SATSolver ./include)
 set(SOURCE
     main.cpp
     lexer.cpp
+    core.cpp
 )
 
 #make executable file

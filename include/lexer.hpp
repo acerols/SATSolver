@@ -8,14 +8,16 @@
 #include <boost/spirit/include/qi.hpp>
 #include <boost/spirit/include/phoenix.hpp>
 
+typedef struct{
+    std::vector<std::vector<int>> CNF;
+    int numVar;
+    int numLiteral;
+}clauses;
 
 class lexer{
 private:
     std::ifstream readfile;
-    std::vector<std::vector<int>> CNF;
-    int numVar;
-    int numLiteral;
-    
+    clauses cnf;
 public:    
     lexer(std::string filename);
     void parse_line(std::string line);    
