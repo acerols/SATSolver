@@ -10,7 +10,7 @@ typedef enum res{
 
 class DPLL{
 private:
-
+    lexer lex;
 public:
     DPLL(lexer cnf);
 

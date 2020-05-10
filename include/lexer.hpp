@@ -19,9 +19,9 @@ private:
     std::ifstream readfile;
     clauses cnf;
 public:    
-    lexer(std::string filename);
+    void lex(std::string filename);
     void parse_line(std::string line);    
-    
+    clauses getClauses();
 };
 
 #endif

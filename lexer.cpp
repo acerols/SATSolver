@@ -10,7 +10,7 @@
 using namespace boost::spirit;
 using namespace boost;
 
-lexer::lexer(std::string filename){
+void lexer::lex(std::string filename){
     std::string line;
     readfile.open(filename);
     if(!readfile.is_open()){
@@ -18,15 +18,6 @@ lexer::lexer(std::string filename){
     }
     while(getline(readfile, line)){
         parse_line(line);
-    }
-
-    //debug console
-    for(auto i = 0; i < cnf.CNF.size(); i++){
-        std::cout << "Litearl=" << i << " : ";
-        for(auto j = 1; j < cnf.CNF.at(i).size(); j++){
-            std::cout << j << "=" << cnf.CNF.at(i).at(j) << ", ";
-        }
-        std::cout << std::endl;
     }
 
 }
@@ -92,4 +83,9 @@ void lexer::parse_line(std::string line)
         }
     }
 
+}
+
+clauses lexer::getClauses()
+{
+    return cnf;
 }
