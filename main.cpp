@@ -4,6 +4,7 @@
 #include <boost/spirit/include/qi.hpp>
 
 #include "lexer.hpp"
+#include "core.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -25,6 +26,16 @@ int main(int argc, char *argv[])
             std::cout << j << "=" << cls.CNF.at(i).at(j) << ", ";
         }
         std::cout << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    DPLL core(cls);
+    if(core.research() == SAT){
+        std::cout << "SAT" << std::endl;
+    }
+    else{
+        std::cout << "UNSAT" << std::endl;
     }
 
     return 0;

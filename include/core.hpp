@@ -11,8 +11,10 @@ typedef enum res{
 class DPLL{
 private:
     lexer lex;
+    clauses cls;
 public:
-    DPLL(lexer cnf);
+    DPLL(clauses clauses);
+    RESULT research();
 
 };
 
