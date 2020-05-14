@@ -14,7 +14,7 @@ private:
     clauses cls;
 public:
     DPLL(clauses clauses);
-    RESULT research();
+    RESULT FullSearch();
 
 };
 

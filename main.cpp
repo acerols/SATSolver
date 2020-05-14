@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
     std::cout << std::endl;
 
     DPLL core(cls);
-    if(core.research() == SAT){
+    if(core.FullSearch() == SAT){
         std::cout << "SAT" << std::endl;
     }
     else{
