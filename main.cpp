@@ -19,14 +19,14 @@ int main(int argc, char *argv[])
     clauses cls = lex->getClauses();
     
 
-        //debug console
-    for(auto i = 0; i < cls.CNF.size(); i++){
-        std::cout << "Literal=" << i << " : ";
-        for(auto j = 1; j < cls.CNF.at(i).size(); j++){
-            std::cout << j << "=" << cls.CNF.at(i).at(j) << ", ";
-        }
-        std::cout << std::endl;
-    }
+    //debug console
+    //for(auto i = 0; i < cls.CNF.size(); i++){
+    //    std::cout << "Literal=" << i << " : ";
+    //    for(auto j = 1; j < cls.CNF.at(i).size(); j++){
+    //        std::cout << j << "=" << cls.CNF.at(i).at(j) << ", ";
+    //    }
+    //    std::cout << std::endl;
+    //}
 
     std::cout << std::endl;
 

@@ -17,3 +17,7 @@ cd ../
 ./build/SATSolver ./test/${IN_FILE_NAME}${INDEX}.cnf >> ./test/${OUT_FILE_NAME}${INDEX}.txt
 : expr $((INDEX+=1))
 ./build/SATSolver ./test/${IN_FILE_NAME}${INDEX}.cnf >> ./test/${OUT_FILE_NAME}${INDEX}.txt
+: expr $((INDEX+=1))
+./build/SATSolver ./test/${IN_FILE_NAME}${INDEX}.cnf >> ./test/${OUT_FILE_NAME}${INDEX}.txt
+: expr $((INDEX+=1))
+./build/SATSolver ./test/${IN_FILE_NAME}${INDEX}.cnf >> ./test/${OUT_FILE_NAME}${INDEX}.txt
